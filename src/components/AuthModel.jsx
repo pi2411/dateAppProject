@@ -1,7 +1,7 @@
 import React,{useState} from 'react'
 import { IoMdCloseCircleOutline } from "react-icons/io";
 
-const AuthModel = ({setShowModel}) => {
+const AuthModel = ({setShowModel , isSingUp}) => {
   const[email,setEmail]=useState(null);
   const[password,setPassword]=useState(null);
   const[confirmPasword,setConfirmPassword]=useState(null);
@@ -10,10 +10,18 @@ const AuthModel = ({setShowModel}) => {
   console.log(email,password,confirmPasword)
     function heandleClick(){
         setShowModel(false)
+
     }function heandleSubmit(e){
-    e.preventefault();
+    e.preventefault()
+    try {
+      if(isSingUp && (password !== confirmPasword)){
+        console.log("Password need to match!")
+        }
+      console.log("Mack post request to our database")
+    }catch(error){
+      console.log(error)
     }
-    const isSingUp = true;
+ }
   return (
     <div className='auth-modal'>
     <div className='close-icon' onClick={heandleClick}><IoMdCloseCircleOutline/></div>
@@ -36,20 +44,20 @@ const AuthModel = ({setShowModel}) => {
       required={true}
       onChange={(e)=>setPassword(e.target.value)}
     />
-    <input 
-      type='password-check'
+   {isSingUp && <input 
+      type='password'
       id="password-check"
       name='password-check'
       placeholder='confirm-password'
       required={true}
       onChange={(e)=>setConfirmPassword(e.target.value)}
-    />
+    />}
     <input className='secondary-button' type='submit' />
     <p>{error}</p>
     </form>
     <hr/>
     <h2>GET THE APP</h2>
-    AUTH MODEL
+
     </div>
   )
 }
