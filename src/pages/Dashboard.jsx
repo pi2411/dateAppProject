@@ -23,7 +23,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     getUser()
-  }, [])
+  }, [user])
 
   console.log("user", user);
 
