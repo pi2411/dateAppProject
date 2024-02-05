@@ -40,6 +40,8 @@ const AuthModel = ({ setShowModel, isSingUp }) => {
       if (success && isSingUp) navigate('/onboarding');
       if (success && !isSingUp) navigate('/dashboard');
       console.log("Made post request to our database");
+
+      window.location.reload()
     } catch (error) {
       console.log(error);
     }
